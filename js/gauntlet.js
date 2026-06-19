@@ -1,10 +1,7 @@
-// Corrupted Gauntlet loot/drop calculator.
 import { UNIQUES, MINUTES_PER_KILL } from "./data/gauntlet.js";
 import { $, on, numVal, row } from "./lib/dom.js";
 import { num, pct, duration } from "./lib/format.js";
 
-// Pure math — given a 1/oneIn rate over kc kills:
-//   expected count, and chance of at least one.
 export function expectedDrops(oneIn, kc) {
   const p = 1 / oneIn;
   return {

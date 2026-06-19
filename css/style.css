@@ -1,4 +1,4 @@
-/* old school abacus — shared styles. one file, no framework, no fluff. */
+/* back to the glory days. single css file, thousands of classes. */
 
 :root {
   --bg: #1b1813;
@@ -29,7 +29,7 @@ body {
   max-width: 720px;
   margin: 0 auto;
   padding: 24px 16px 64px;
-  text-transform: lowercase; /* unique, sexy, all-lowercase aesthetic */
+  text-transform: lowercase;
 }
 
 a { color: var(--link); }
@@ -66,7 +66,6 @@ h2 {
   padding-bottom: 4px;
 }
 
-/* forms */
 .field {
   display: flex;
   align-items: center;
@@ -88,16 +87,28 @@ input, select {
 }
 input:focus, select:focus { outline: 1px solid var(--accent); }
 
-/* results — grid so name / rate / value line up in columns across every row */
+button {
+  background: var(--panel-2);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  min-width: 140px;
+}
+button:hover { border-color: var(--accent); }
+
 .results {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 4px 16px;
   display: grid;
-  grid-template-columns: 1fr auto auto; /* name | rate | value */
+  grid-template-columns: 1fr auto auto;
 }
-.row { display: contents; } /* let the row's cells participate in the grid */
+.row { display: contents; }
 .row > * {
   padding: 8px 0;
   border-bottom: 1px solid rgba(90, 74, 50, 0.4);
@@ -131,7 +142,6 @@ input:focus, select:focus { outline: 1px solid var(--accent); }
 .row .val.good { color: var(--good); }
 .row .val.bad { color: var(--bad); }
 
-/* hub list */
 .calc-list { list-style: none; padding: 0; }
 .calc-list li { margin: 0 0 12px; }
 .calc-list a {

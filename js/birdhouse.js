@@ -1,4 +1,3 @@
-// Birdhouse running calculator.
 import {
   BIRDHOUSES,
   HOUSES_PER_RUN,
@@ -9,8 +8,6 @@ import {
 import { $, on, numVal, row } from "./lib/dom.js";
 import { num } from "./lib/format.js";
 
-// Pure math for one birdhouse type over a number of runs.
-// `built` = you build the birdhouses yourself (earns Crafting XP); false = bought pre-made.
 export function runTotals(house, runs, built = true) {
   const houses = runs * HOUSES_PER_RUN;
 
@@ -29,14 +26,13 @@ const runsInput = $("#runs");
 const builtInput = $("#built");
 const out = $("#results");
 
-// populate the type dropdown from data
 for (const [i, h] of BIRDHOUSES.entries()) {
   const opt = document.createElement("option");
   opt.value = String(i);
   opt.textContent = `${h.name} (lvl ${h.hunterLvl})`;
   typeSelect.append(opt);
 }
-typeSelect.value = String(BIRDHOUSES.length - 1); // default: best available
+typeSelect.value = String(BIRDHOUSES.length - 1);
 
 function render() {
   const house = BIRDHOUSES[numVal(typeSelect, 0)];
