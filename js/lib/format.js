@@ -6,6 +6,8 @@ export function num(n, decimals = 0) {
   });
 }
 
+export const usd = (n) => "$" + num(n, 2);
+
 export function pct(p, decimals = 1) {
   if (!isFinite(p)) return "-";
   return (p * 100).toFixed(decimals) + "%";

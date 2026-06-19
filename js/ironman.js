@@ -1,5 +1,5 @@
 import { GENERAL_ROASTS, IRONMAN_TYPES } from "./data/ironman.js";
-import { $, on, numVal, row } from "./lib/dom.js";
+import { $, on, numVal, row, fillSelect } from "./lib/dom.js";
 
 export function pickRoast(type) {
   const pool = type.excludeGeneral
@@ -13,12 +13,7 @@ const calcButton = $("#calc");
 const output = $("#output");
 const out = $("#results");
 
-for (const [i, t] of IRONMAN_TYPES.entries()) {
-  const opt = document.createElement("option");
-  opt.value = String(i);
-  opt.textContent = t.name;
-  typeSelect.append(opt);
-}
+fillSelect(typeSelect, IRONMAN_TYPES, (t) => t.name);
 
 function render() {
   const type = IRONMAN_TYPES[numVal(typeSelect, 0)];

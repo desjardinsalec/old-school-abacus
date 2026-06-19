@@ -10,6 +10,15 @@ export function numVal(el, fallback = 0) {
   return isFinite(v) ? v : fallback;
 }
 
+export function fillSelect(select, items, label) {
+  for (const [i, item] of items.entries()) {
+    const opt = document.createElement("option");
+    opt.value = String(i);
+    opt.textContent = label(item);
+    select.append(opt);
+  }
+}
+
 export function row({ name, val, rate, good, bad, note }) {
   const r = document.createElement("div");
   r.className = "row";

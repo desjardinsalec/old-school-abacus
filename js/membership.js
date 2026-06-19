@@ -5,7 +5,7 @@ import {
   ALTERNATIVES,
 } from "./data/membership.js";
 import { $, on, numVal, row } from "./lib/dom.js";
-import { num } from "./lib/format.js";
+import { num, usd } from "./lib/format.js";
 
 export function membershipCost(years, monthlyUsd) {
   const months = years * 12;
@@ -47,7 +47,7 @@ function render() {
 
   rows.push(
     row({ name: "Months of membership", val: num(months) }),
-    row({ name: "Total spent (USD)", val: "$" + num(total, 2), bad: true })
+    row({ name: "Total spent (USD)", val: usd(total), bad: true })
   );
 
   for (const alt of ALTERNATIVES) {
@@ -55,7 +55,7 @@ function render() {
     rows.push(
       row({
         name: alt.name,
-        rate: "$" + num(alt.usd, 2),
+        rate: usd(alt.usd),
         val: alt.whole ? num(Math.floor(count)) : num(count, 1),
         note: alt.note,
       })
@@ -66,11 +66,11 @@ function render() {
   rows.push(
     row({
       name: "If invested instead (10%/yr)",
-      val: "$" + num(invested, 2),
+      val: usd(invested),
       good: true,
       note: "stop using me as an investment calculator too",
     }),
-    row({ name: "Growth missed out on", val: "$" + num(invested - total, 2) })
+    row({ name: "Growth missed out on", val: usd(invested - total) })
   );
 
   out.replaceChildren(...rows);

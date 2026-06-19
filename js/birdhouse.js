@@ -5,7 +5,7 @@ import {
   AVG_NESTS_PER_HOUSE,
   LOGS_PER_HOUSE,
 } from "./data/birdhouse.js";
-import { $, on, numVal, row } from "./lib/dom.js";
+import { $, on, numVal, row, fillSelect } from "./lib/dom.js";
 import { num } from "./lib/format.js";
 
 export function runTotals(house, runs, built = true) {
@@ -26,12 +26,7 @@ const runsInput = $("#runs");
 const builtInput = $("#built");
 const out = $("#results");
 
-for (const [i, h] of BIRDHOUSES.entries()) {
-  const opt = document.createElement("option");
-  opt.value = String(i);
-  opt.textContent = `${h.name} (lvl ${h.hunterLvl})`;
-  typeSelect.append(opt);
-}
+fillSelect(typeSelect, BIRDHOUSES, (h) => `${h.name} (lvl ${h.hunterLvl})`);
 typeSelect.value = String(BIRDHOUSES.length - 1);
 
 function render() {
