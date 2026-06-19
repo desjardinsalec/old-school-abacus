@@ -15,14 +15,21 @@ export function numVal(el, fallback = 0) {
 }
 
 // build a result row: <div class="row"><span class="name">..</span><span class="val">..</span></div>
-export function row({ name, val, rate, good }) {
+// `note` adds small subtext under the name.
+export function row({ name, val, rate, good, bad, note }) {
   const r = document.createElement("div");
   r.className = "row";
   const left = document.createElement("span");
   left.className = "name";
   left.textContent = name;
+  if (note) {
+    const sub = document.createElement("small");
+    sub.className = "subtext";
+    sub.textContent = note;
+    left.append(sub);
+  }
   const right = document.createElement("span");
-  right.className = "val" + (good ? " good" : "");
+  right.className = "val" + (good ? " good" : "") + (bad ? " bad" : "");
   right.textContent = val;
   r.append(left);
   if (rate) {

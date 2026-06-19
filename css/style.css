@@ -9,6 +9,7 @@
   --muted: #b3a585;
   --accent: #f0c674;
   --good: #8cc265;
+  --bad: #e06c75;
   --link: #f0c674;
   --mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
 }
@@ -28,6 +29,7 @@ body {
   max-width: 720px;
   margin: 0 auto;
   padding: 24px 16px 64px;
+  text-transform: lowercase; /* unique, sexy, all-lowercase aesthetic */
 }
 
 a { color: var(--link); }
@@ -48,6 +50,13 @@ header h1 {
 
 header .tagline { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
 header .back { font-size: 0.85rem; }
+header .banner {
+  margin-top: 6px;
+  color: var(--bad);
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.85;
+}
 
 h2 {
   font-size: 1.05rem;
@@ -79,21 +88,48 @@ input, select {
 }
 input:focus, select:focus { outline: 1px solid var(--accent); }
 
-/* results */
-.results { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 4px 16px; }
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
+/* results — grid so name / rate / value line up in columns across every row */
+.results {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 16px;
+  display: grid;
+  grid-template-columns: 1fr auto auto; /* name | rate | value */
+}
+.row { display: contents; } /* let the row's cells participate in the grid */
+.row > * {
   padding: 8px 0;
   border-bottom: 1px solid rgba(90, 74, 50, 0.4);
 }
-.row:last-child { border-bottom: none; }
-.row .name { color: var(--muted); }
-.row .val { font-family: var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.row:last-child > * { border-bottom: none; }
+.row .name { grid-column: 1; color: var(--muted); padding-right: 16px; }
+.row .name .subtext {
+  display: block;
+  font-size: 0.72rem;
+  font-style: italic;
+  opacity: 0.65;
+  margin-top: 2px;
+}
+.row .rate {
+  grid-column: 2;
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-family: var(--mono);
+}
+.row .val {
+  grid-column: 3;
+  text-align: right;
+  font-family: var(--mono);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
 .row .val.good { color: var(--good); }
-.row .rate { color: var(--muted); font-size: 0.8rem; font-family: var(--mono); }
+.row .val.bad { color: var(--bad); }
 
 /* hub list */
 .calc-list { list-style: none; padding: 0; }

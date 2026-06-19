@@ -20,23 +20,18 @@ const out = $("#results");
 function render() {
   const kc = numVal(kcInput, 0);
   const killTime = numVal(killTimeInput, MINUTES_PER_KILL);
-  out.replaceChildren();
 
-  for (const u of UNIQUES) {
+  const rows = UNIQUES.map((u) => {
     const { expected, atLeastOne } = expectedDrops(u.oneIn, kc);
-    out.append(
-      row({
-        name: u.name,
-        rate: `1/${u.oneIn}`,
-        val: `${num(expected, 2)} avg · ${pct(atLeastOne)} chance`,
-        good: atLeastOne >= 0.5,
-      })
-    );
-  }
-
-  out.append(
-    row({ name: "Estimated time", val: duration(kc * killTime) })
-  );
+    return row({
+      name: u.name,
+      rate: `1/${u.oneIn}`,
+      val: `${num(expected, 2)} avg · ${pct(atLeastOne)} chance`,
+      good: atLeastOne >= 0.5,
+    });
+  });
+  rows.push(row({ name: "Estimated time", val: duration(kc * killTime) }));
+  out.replaceChildren(...rows);
 }
 
 on(kcInput, "input", render);
