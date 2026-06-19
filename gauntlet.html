@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corrupted Gauntlet calculator · old school abacus</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Corrupted Gauntlet</h1>
+    <div class="tagline">unique drop odds over your kill count</div>
+    <div class="back"><a href="/">&larr; all calculators</a></div>
+  </header>
+
+  <h2>Input</h2>
+  <div class="field">
+    <label for="kc">Kill count (completions)</label>
+    <input type="number" id="kc" min="0" step="1" value="100" />
+  </div>
+  <div class="field">
+    <label for="killtime">Time per kill (minutes)</label>
+    <input type="number" id="killtime" min="0" step="0.25" value="4.5" />
+  </div>
+
+  <h2>Expected loot</h2>
+  <div class="results" id="results"></div>
+  <p class="note">Uniques are untradeable; values show expected count and chance of at least one.</p>
+
+  <script type="module" src="/js/gauntlet.js"></script>
+</body>
+</html>

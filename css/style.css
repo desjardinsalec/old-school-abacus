@@ -1,0 +1,114 @@
+/* old school abacus — shared styles. one file, no framework, no fluff. */
+
+:root {
+  --bg: #1b1813;
+  --panel: #2a251d;
+  --panel-2: #332d23;
+  --border: #5a4a32;
+  --text: #e8dcc0;
+  --muted: #b3a585;
+  --accent: #f0c674;
+  --good: #8cc265;
+  --link: #f0c674;
+  --mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+a { color: var(--link); }
+a:hover { color: #fff; }
+
+header {
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+header .tagline { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+header .back { font-size: 0.85rem; }
+
+h2 {
+  font-size: 1.05rem;
+  color: var(--accent);
+  margin: 24px 0 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+/* forms */
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+}
+.field label { color: var(--muted); }
+
+input, select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  min-width: 140px;
+}
+input:focus, select:focus { outline: 1px solid var(--accent); }
+
+/* results */
+.results { background: var(--panel); border: 1px solid var(--border); border-radius: 6px; padding: 4px 16px; }
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(90, 74, 50, 0.4);
+}
+.row:last-child { border-bottom: none; }
+.row .name { color: var(--muted); }
+.row .val { font-family: var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.row .val.good { color: var(--good); }
+.row .rate { color: var(--muted); font-size: 0.8rem; font-family: var(--mono); }
+
+/* hub list */
+.calc-list { list-style: none; padding: 0; }
+.calc-list li { margin: 0 0 12px; }
+.calc-list a {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.calc-list a:hover { border-color: var(--accent); background: var(--panel-2); }
+.calc-list .title { color: var(--accent); font-weight: bold; }
+.calc-list .desc { color: var(--muted); font-size: 0.85rem; }
+
+footer { color: var(--muted); font-size: 0.8rem; margin-top: 40px; text-align: center; }
+.note { color: var(--muted); font-size: 0.8rem; margin-top: 8px; }
