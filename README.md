@@ -1,4 +1,4 @@
-#old school abacus
+# old school abacus
 building elegant, yet fast old school runescape calculators
 
 f*ck a modern UI, we going back to the glory days when load times were subseconds,
